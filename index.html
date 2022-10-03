@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="archive/compiled/custom.css">
+  <script type="module" src="archive/app.js" defer></script>
+  <title>Blog</title>  
+</head>
+<body>
+  <main class="bg-dark">
+    <section class="py-5">
+      <div class="container">
+        <h1 class="text-center text-white pb-5">
+          BLOG
+        </h1>
+        <div class="row justify-content-center" id="listBlog">
+
+        </div>
+        
+        <nav class="py-5" aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <div>
+        <ul id="usuarios">
+        <!-- será preenchido via ajax -->
+        </ul>
+      </div>
+
+    </section>
+  </main>  
+</body>
+</html>
