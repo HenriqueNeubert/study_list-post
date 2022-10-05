@@ -22,12 +22,14 @@
 //* SELECIONO A QUANTIDADE
 //! PEGA A QT DA API
 //! RETORNA POSTS 
-//! CRIAR CARDS VIA JS 
+//* CRIAR CARDS VIA JS 
 //! CRIAR CARDS DE ACORDO COM A QT 
 //! IMPRIMIR DADOS EM CADA CARD
 
-const listBlog = document.getElementById('listBlog')
-const inputNumber = 1;
+const listBlog = document.getElementById('listBlog');
+const formNumber = document.getElementById('formNumber');
+const inputNumber = document.getElementById('inputNumber');
+const inputSubmit = document.getElementById('inputSubmit');
 
 //? Functions
 
@@ -72,7 +74,9 @@ function createCard()
   cardText.innerText = 'Card text teste';
 
   const cardButton = document.createElement('a');
+  cardButton.setAttribute('href', '#');
   cardButton.classList.add('btn', 'btn-primary'); 
+  cardButton.innerText = 'Ver Mais';
 
   col.appendChild(card);
   card.appendChild(cardBody);
