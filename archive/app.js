@@ -67,6 +67,10 @@ function createCard()
   
   const card = document.createElement('div');
   card.classList.add('card'); 
+
+  const cardImage = document.createElement('img');
+  cardImage.classList.add('card-img-top'); 
+  cardImage.setAttribute('alt', 'imagem teste');
   
   const cardBody = document.createElement('div');
   cardBody.classList.add('card-body'); 
@@ -85,6 +89,7 @@ function createCard()
   cardButton.innerText = 'Ver Mais';
 
   col.appendChild(card);
+  card.appendChild(cardImage);  
   card.appendChild(cardBody);
   cardBody.appendChild(cardTitle);
   cardBody.appendChild(cardText);
