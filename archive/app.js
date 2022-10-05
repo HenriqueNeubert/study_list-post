@@ -33,10 +33,16 @@ const inputSubmit = document.getElementById('inputSubmit');
 
 //? Functions
 
-handleCard()
+function handleSubmit(e)
+{
+  e.preventDefault();
+
+  handleCard();
+}
+
 function handleCard()
 {
-  const verif = verificationNumber()
+  const verif = verificationNumber();
   
   if (verif === true) {
     createCard();
@@ -45,7 +51,7 @@ function handleCard()
 
 function verificationNumber()
 {  
-  if (inputNumber == ''){ //!temp  
+  if (inputNumber.value == ''){ //!temp  
     handleMessage('Digite um número válido')
 
     return false
@@ -97,3 +103,4 @@ function handleMessage(message)
 
 //? EVENTS
 
+formNumber.addEventListener('submit', handleSubmit)
