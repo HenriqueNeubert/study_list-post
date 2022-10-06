@@ -16,7 +16,7 @@ const inputSubmit = document.getElementById('inputSubmit');
 function handleSubmit(e)
 {
   e.preventDefault();
-
+  
   handleCard();
 }
 
@@ -25,46 +25,26 @@ function handleCard()
   const verif = verificationNumber();
   
   if (verif === true) {
-    getDataBase();
-    createCard();
+    getDataBase();       
   }
 }
 
-function getDataBase()
+async function getDataBase()
 {
-  const dataBase = new Object();
+  const dataBase = [];
   
   for (var i = 1; i <= inputNumber.value; i++) {    
     const randon = Math.random() * (100 - 1) + 1;
-
-    fetch("https://jsonplaceholder.typicode.com/posts/" + randon.toFixed(0))
+    
+    await fetch("https://jsonplaceholder.typicode.com/posts/" + randon.toFixed(0))
     .then(response => response.json())
     .then(json => {
-    dataBase.id = JSON.stringify(json.id);
-    dataBase.imagem = 'Provisório';
-    dataBase.title = JSON.stringify(json.title);
-    dataBase.description = JSON.stringify(json.body);    
-    });    
-    
+      
+      dataBase.push(JSON.stringify(json));
+    });      
   }
 
-  console.log(dataBase);
-
-// const list = document.getElementById("listBlog");
-
-// fetch("https://jsonplaceholder.typicode.com/users")
-//   .then(response => response.json())
-//   .then(json => handleShowData(json)) //? envia json
-
-// function handleShowData(usuarios) //? recebe json
-// {
-//   usuarios.forEach(({name, username, email}) => {   
-
-//     const li = document.createElement("li");
-//     li.innerText = `Nome: ${name}, Usuário: ${username}, E-mail: ${email}`;
-//     list.appendChild(li);
-//   })
-// }
+  createCard(dataBase);  
 }
 
 function verificationNumber()
@@ -78,43 +58,50 @@ function verificationNumber()
   return true
 }
 
-function createCard()
+function createCard(dataBase)
 {
-  const col = document.createElement('div');
-  col.classList.add('col-lg-4'); 
+  console.log(dataBase);
   
-  const card = document.createElement('div');
-  card.classList.add('card'); 
+  dataBase.map(function(item) {
+    console.log('teste' + item); 
+    debugger
+    
+    const col = document.createElement('div');
+    col.classList.add('col-lg-4'); 
+    
+    const card = document.createElement('div');
+    card.classList.add('card'); 
 
-  const cardImage = document.createElement('img');
-  cardImage.classList.add('card-img-top'); 
-  cardImage.setAttribute('alt', 'imagem teste');
-  
-  const cardBody = document.createElement('div');
-  cardBody.classList.add('card-body'); 
+    const cardImage = document.createElement('img');
+    cardImage.classList.add('card-img-top'); 
+    cardImage.setAttribute('alt', 'imagem teste');
+    
+    const cardBody = document.createElement('div');
+    cardBody.classList.add('card-body'); 
 
-  const cardTitle = document.createElement('h5');
-  cardTitle.classList.add('card-title'); 
-  cardTitle.innerText = 'Card title teste';
+    const cardTitle = document.createElement('h5');
+    cardTitle.classList.add('card-title'); 
+    cardTitle.innerText = item.title;
 
-  const cardText = document.createElement('p');
-  cardText.classList.add('card-text'); 
-  cardText.innerText = 'Card text teste';
+    const cardText = document.createElement('p');
+    cardText.classList.add('card-text'); 
+    cardText.innerText = item.body;
 
-  const cardButton = document.createElement('a');
-  cardButton.setAttribute('href', '#');
-  cardButton.classList.add('btn', 'btn-primary'); 
-  cardButton.innerText = 'Ver Mais';
+    const cardButton = document.createElement('a');
+    cardButton.setAttribute('href', '#');
+    cardButton.classList.add('btn', 'btn-primary'); 
+    cardButton.innerText = 'Ver Mais';
 
-  col.appendChild(card);
-  card.appendChild(cardImage);  
-  card.appendChild(cardBody);
-  cardBody.appendChild(cardTitle);
-  cardBody.appendChild(cardText);
-  cardBody.appendChild(cardButton);
-  //!ADD IMG
+    col.appendChild(card);
+    card.appendChild(cardImage);  
+    card.appendChild(cardBody);
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardText);
+    cardBody.appendChild(cardButton);
+    //!ADD IMG
 
-  listBlog.appendChild(col);
+    listBlog.appendChild(col);
+  });
 }
 
 //? FUNCTIIONS DEFAULT
