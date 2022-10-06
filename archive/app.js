@@ -1,23 +1,3 @@
-// fetch('https://jsonplaceholder.typicode.com/todos/1')
-//   .then(response => response.json())
-//   .then(json => console.log(json))
-
-// const list = document.getElementById("listBlog");
-
-// fetch("https://jsonplaceholder.typicode.com/users")
-//   .then(response => response.json())
-//   .then(json => handleShowData(json)) //? envia json
-
-// function handleShowData(usuarios) //? recebe json
-// {
-//   usuarios.forEach(({name, username, email}) => {   
-
-//     const li = document.createElement("li");
-//     li.innerText = `Nome: ${name}, Usuário: ${username}, E-mail: ${email}`;
-//     list.appendChild(li);
-//   })
-// }
-
 //! FLUXO 
 //* SELECIONO A QUANTIDADE
 //! PEGA A QT DA API
@@ -45,8 +25,46 @@ function handleCard()
   const verif = verificationNumber();
   
   if (verif === true) {
+    getDataBase();
     createCard();
   }
+}
+
+function getDataBase()
+{
+  const dataBase = new Object();
+  
+  for (var i = 1; i <= inputNumber.value; i++) {    
+    const randon = Math.random() * (100 - 1) + 1;
+
+    fetch("https://jsonplaceholder.typicode.com/posts/" + randon.toFixed(0))
+    .then(response => response.json())
+    .then(json => {
+    dataBase.id = JSON.stringify(json.id);
+    dataBase.imagem = 'Provisório';
+    dataBase.title = JSON.stringify(json.title);
+    dataBase.description = JSON.stringify(json.body);    
+    });    
+    
+  }
+
+  console.log(dataBase);
+
+// const list = document.getElementById("listBlog");
+
+// fetch("https://jsonplaceholder.typicode.com/users")
+//   .then(response => response.json())
+//   .then(json => handleShowData(json)) //? envia json
+
+// function handleShowData(usuarios) //? recebe json
+// {
+//   usuarios.forEach(({name, username, email}) => {   
+
+//     const li = document.createElement("li");
+//     li.innerText = `Nome: ${name}, Usuário: ${username}, E-mail: ${email}`;
+//     list.appendChild(li);
+//   })
+// }
 }
 
 function verificationNumber()
