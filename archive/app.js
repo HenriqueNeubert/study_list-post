@@ -25,26 +25,47 @@ function handleCard()
   const verif = verificationNumber();
   
   if (verif === true) {
-    getDataBase();       
+    //? ou
+    // getDataBase()
+    getDataBase().then(data => createCard(data)) 
+    // const newDataBase = getDataBase();  
+    // newDataBase.then(function(data) { 
+      // createCard(data);  
+    // })
+
   }
 }
 
 async function getDataBase()
 {
+  // const arrEndpoints = [
+  //   "https://jsonplaceholder.typicode.com/posts/76",
+  //   "https://jsonplaceholder.typicode.com/posts/77",
+  //   "https://jsonplaceholder.typicode.com/posts/78",
+  //   "https://jsonplaceholder.typicode.com/posts/79"
+  // ]
+
+  // const arrPromises = arrEndpoints.map(url => fetch(url).then(res => res.json()))
+  // const getAllData = await Promise.all(arrPromises);
+
+
+
   const dataBase = [];
+  const arrEndpoints = []
   
   for (var i = 1; i <= inputNumber.value; i++) {    
     const randon = Math.random() * (100 - 1) + 1;
-    
-    await fetch("https://jsonplaceholder.typicode.com/posts/" + randon.toFixed(0))
-    .then(response => response.json())
-    .then(json => {
-      
-      dataBase.push(JSON.stringify(json));
-    });      
+    arrEndpoints.push("https://jsonplaceholder.typicode.com/posts/" + randon.toFixed(0));
   }
+  const arrPromises = arrEndpoints.map(url => fetch(url).then(res => res.json()))
+  const getAllData = await Promise.all(arrPromises);
 
-  createCard(dataBase);  
+  // const response = await fetch("https://jsonplaceholder.typicode.com/posts/" + randon.toFixed(0))
+  // const data = await response.json()  
+  
+  // dataBase.push(data);
+
+  return getAllData
 }
 
 function verificationNumber()
@@ -61,10 +82,9 @@ function verificationNumber()
 function createCard(dataBase)
 {
   console.log(dataBase);
-  
-  dataBase.map(function(item) {
-    console.log('teste' + item); 
-    debugger
+  dataBase.forEach(function(item, index){
+
+    // const newItem = JSON.parse(item); 
     
     const col = document.createElement('div');
     col.classList.add('col-lg-4'); 
