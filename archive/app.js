@@ -25,11 +25,11 @@ function handleCard()
   const verif = verificationNumber();
   
   if (verif === true) {
-    getDataBase().then(data => createCard(data)); 
+    getDataBaseInfo().then(data => createCard(data)); 
   }
 }
 
-async function getDataBase()
+async function getDataBaseInfo()
 {
   const dataBase = [];
   const arrEndpoints = []
@@ -59,8 +59,6 @@ function createCard(dataBase)
 {
   console.log(dataBase);
   dataBase.forEach(function(item, index){
-
-    // const newItem = JSON.parse(item); 
     
     const col = document.createElement('div');
     col.classList.add('col-lg-4'); 
