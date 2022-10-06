@@ -25,31 +25,12 @@ function handleCard()
   const verif = verificationNumber();
   
   if (verif === true) {
-    //? ou
-    // getDataBase()
-    getDataBase().then(data => createCard(data)) 
-    // const newDataBase = getDataBase();  
-    // newDataBase.then(function(data) { 
-      // createCard(data);  
-    // })
-
+    getDataBase().then(data => createCard(data)); 
   }
 }
 
 async function getDataBase()
 {
-  // const arrEndpoints = [
-  //   "https://jsonplaceholder.typicode.com/posts/76",
-  //   "https://jsonplaceholder.typicode.com/posts/77",
-  //   "https://jsonplaceholder.typicode.com/posts/78",
-  //   "https://jsonplaceholder.typicode.com/posts/79"
-  // ]
-
-  // const arrPromises = arrEndpoints.map(url => fetch(url).then(res => res.json()))
-  // const getAllData = await Promise.all(arrPromises);
-
-
-
   const dataBase = [];
   const arrEndpoints = []
   
@@ -59,11 +40,6 @@ async function getDataBase()
   }
   const arrPromises = arrEndpoints.map(url => fetch(url).then(res => res.json()))
   const getAllData = await Promise.all(arrPromises);
-
-  // const response = await fetch("https://jsonplaceholder.typicode.com/posts/" + randon.toFixed(0))
-  // const data = await response.json()  
-  
-  // dataBase.push(data);
 
   return getAllData
 }
