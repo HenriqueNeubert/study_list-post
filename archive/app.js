@@ -32,32 +32,33 @@ function handleCard()
 async function getDataBaseInfo()
 {
   const dataBase = [];
-  const arrEndpoints = []
+  const arrEndpoints = [];
   
   for (var i = 1; i <= inputNumber.value; i++) {    
-    const randon = Math.random() * (100 - 1) + 1;
-    arrEndpoints.push("https://jsonplaceholder.typicode.com/posts/" + randon.toFixed(0));
+    const randonPost = Math.random() * (100 - 1) + 1;
+    // const randonPhoto = Math.random() * (5000 - 1) + 1;
+    arrEndpoints.push("https://jsonplaceholder.typicode.com/posts/" + randonPost.toFixed(0));
+    // arrEndpoints.push("https://jsonplaceholder.typicode.com/photos/" + randonPhoto.toFixed(0));
   }
+
   const arrPromises = arrEndpoints.map(url => fetch(url).then(res => res.json()))
   const getAllData = await Promise.all(arrPromises);
-
-  return getAllData
+  return getAllData;
 }
 
 function verificationNumber()
 {  
   if (inputNumber.value == ''){ //!temp  
-    handleMessage('Digite um número válido')
+    handleMessage('Digite um número válido');
 
-    return false
+    return false;
   }
   
-  return true
+  return true;
 }
 
 function createCard(dataBase)
 {
-  console.log(dataBase);
   dataBase.forEach(function(item, index){
     
     const col = document.createElement('div');
@@ -66,9 +67,10 @@ function createCard(dataBase)
     const card = document.createElement('div');
     card.classList.add('card'); 
 
-    const cardImage = document.createElement('img');
-    cardImage.classList.add('card-img-top'); 
-    cardImage.setAttribute('alt', 'imagem teste');
+    // const cardImage = document.createElement('img');
+    // cardImage.classList.add('card-img-top'); 
+    // cardImage.setAttribute('alt', item.title);
+    // cardImage.setAttribute('href', item.url);
     
     const cardBody = document.createElement('div');
     cardBody.classList.add('card-body'); 
@@ -87,12 +89,11 @@ function createCard(dataBase)
     cardButton.innerText = 'Ver Mais';
 
     col.appendChild(card);
-    card.appendChild(cardImage);  
+    // card.appendChild(cardImage);  
     card.appendChild(cardBody);
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(cardText);
     cardBody.appendChild(cardButton);
-    //!ADD IMG
 
     listBlog.appendChild(col);
   });
@@ -102,9 +103,9 @@ function createCard(dataBase)
 
 function handleMessage(message)
 {
-  alert(message)
+  alert(message);
 }
 
 //? EVENTS
 
-formNumber.addEventListener('submit', handleSubmit)
+formNumber.addEventListener('submit', handleSubmit);
