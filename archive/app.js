@@ -24,7 +24,6 @@ function handleCard()
 
 function cleanCard()
 {
-  debugger
   listBlog.innerText = '';
 }
 
@@ -35,9 +34,7 @@ async function getDataBaseInfo()
   
   for (var i = 1; i <= inputNumber.value; i++) {    
     const randonPost = Math.random() * (100 - 1) + 1;
-    // const randonPhoto = Math.random() * (5000 - 1) + 1;
     arrEndpoints.push("https://jsonplaceholder.typicode.com/posts/" + randonPost.toFixed(0));
-    // arrEndpoints.push("https://jsonplaceholder.typicode.com/photos/" + randonPhoto.toFixed(0));
   }
 
   const arrPromises = arrEndpoints.map(url => fetch(url).then(res => res.json()))
@@ -65,11 +62,6 @@ function createCard(dataBase)
     
     const card = document.createElement('div');
     card.classList.add('card'); 
-
-    // const cardImage = document.createElement('img');
-    // cardImage.classList.add('card-img-top'); 
-    // cardImage.setAttribute('alt', item.title);
-    // cardImage.setAttribute('href', item.url);
     
     const cardBody = document.createElement('div');
     cardBody.classList.add('card-body'); 
