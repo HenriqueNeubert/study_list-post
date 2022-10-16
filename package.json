@@ -1,7 +1,7 @@
 {
   "name": "study-stopwatch",
   "version": "1.0.0",
-  "description": "",
+  "description": "_________________________________________ # BASIC COMMANDS",
   "main": "index.js",
   "scripts": {
     "start": "sudo docker start xampp8 && cd ./archive && sass --watch custom.scss:compiled/custom.css",

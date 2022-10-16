@@ -1,15 +1,7 @@
-//! FLUXO 
-//* SELECIONO A QUANTIDADE
-//! PEGA A QT DA API
-//! RETORNA POSTS 
-//* CRIAR CARDS VIA JS 
-//! CRIAR CARDS DE ACORDO COM A QT 
-//! IMPRIMIR DADOS EM CADA CARD
-
 const listBlog = document.getElementById('listBlog');
 const formNumber = document.getElementById('formNumber');
 const inputNumber = document.getElementById('inputNumber');
-const inputSubmit = document.getElementById('inputSubmit');
+const inputdeSubmit = document.getElementById('inputSubmit');
 
 //? Functions
 
@@ -25,8 +17,15 @@ function handleCard()
   const verif = verificationNumber();
   
   if (verif === true) {
+    cleanCard();
     getDataBaseInfo().then(data => createCard(data)); 
   }
+}
+
+function cleanCard()
+{
+  debugger
+  listBlog.innerText = '';
 }
 
 async function getDataBaseInfo()
